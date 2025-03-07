@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colorful Weather App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f0f2f5; /* Light gradient background */
+            font-family: 'Arial', sans-serif;
+        }
+
+        .navbar {
+            background-color: #007bff; /* Blue Navbar color */
+        }
+
+        .navbar-brand {
+            color: #ffffff; /* White text color for Navbar brand */
+            font-weight: bold;
+        }
+
+        .container {
+            background-color: #ffffff; /* White container background color */
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-top: 60px; /* Space from navbar */
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h1 {
+            color: #007bff;
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+        }
+
+        .weather-info {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #e9f7ff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .weather-info h2 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .weather-info p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 10px;
+            font-size: 14px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">
+            <img src="https://storage.googleapis.com/bkt-static-tt/logo.png" width="30" height="30" class="d-inline-block align-top" alt="TechTrapture Logo">
+            Abhijit Shenolikar's Weather App
+        </a>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container mt-5">
+        <h1>Weather App</h1>
+
+        <!-- City Input Form -->
+        <form method="post">
+            <div class="form-group">
+                <label for="city">Enter city name:</label>
+                <input type="text" class="form-control" id="city" name="city" required placeholder="e.g. Pune">
+            </div>
+            <button type="submit" class="btn btn-primary">Get Weather</button>
+        </form>
+
+        <!-- Weather Information Display -->
+        {% if weather_data %}
+            <div class="weather-info">
+                <h2>Weather in {{ weather_data['name'] }}, {{ weather_data['sys']['country'] }}:</h2>
+                <p><strong>Description:</strong> {{ weather_data['weather'][0]['description'] }}</p>
+                <p><strong>Temperature:</strong> {{ weather_data['main']['temp'] }}°C</p>
+                <p><strong>Humidity:</strong> {{ weather_data['main']['humidity'] }}%</p>
+                <p><strong>Wind Speed:</strong> {{ weather_data['wind']['speed'] }} m/s</p>
+            </div>
+        {% else %}
+            <p class="mt-4 text-center">Weather data unavailable. kindly check whether city name is correctly entered</p>
+        {% endif %}
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>Weather data powered by OpenWeatherMap API</p>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
