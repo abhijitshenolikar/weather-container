@@ -1,1 +1,1 @@
-key = "<Place_YOUR_API_KEY"
+key = "1e2456027ba35631ebfd7c8d7869e9e7"
